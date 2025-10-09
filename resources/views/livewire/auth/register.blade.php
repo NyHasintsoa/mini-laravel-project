@@ -33,7 +33,7 @@ new #[Layout('components.layouts.auth')]
 
         Auth::login($user);
 
-        $this->redirectIntended(route('dashboard', absolute: false), navigate: true);
+        $this->redirectIntended(route('admin.dashboard', absolute: false), navigate: true);
     }
 }; ?>
 

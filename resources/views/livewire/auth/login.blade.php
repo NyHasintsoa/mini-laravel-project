@@ -43,7 +43,7 @@ new #[Layout('components.layouts.auth')]
         RateLimiter::clear($this->throttleKey());
         Session::regenerate();
 
-        $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
+        $this->redirectIntended(default: route('admin.dashboard', absolute: false), navigate: true);
     }
 
     /**
@@ -84,13 +84,24 @@ new #[Layout('components.layouts.auth')]
 
     <form method="POST" novalidate wire:submit="login" class="flex flex-col gap-6">
         <!-- Email Address -->
-        <flux:input wire:model="email" :label="__('Email address')" type="email" required autofocus autocomplete="email"
-            placeholder="email@example.com" />
+        <flux:input
+            wire:model="email"
+            :label="__('Email address')"
+            type="email"
+            required autofocus autocomplete="email"
+            placeholder="email@example.com"
+        />
 
         <!-- Password -->
         <div class="relative">
-            <flux:input wire:model="password" :label="__('Password')" type="password" required
-                autocomplete="current-password" :placeholder="__('Password')" viewable />
+            <flux:input
+                wire:model="password"
+                :label="__('Password')"
+                type="password"
+                required viewable
+                autocomplete="current-password"
+                :placeholder="__('Password')"
+            />
 
             @if (Route::has('password.request'))
                 <flux:link class="absolute end-0 top-0 text-sm" :href="route('password.request')" wire:navigate>

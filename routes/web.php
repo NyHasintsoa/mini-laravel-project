@@ -1,22 +1,16 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use Livewire\Volt\Volt;
+/**
+ * Route For Authentication
+ */
+require __DIR__.'/web/auth.php';
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+/**
+ * Route For Guest User (Non Authenticated)
+ */
+require __DIR__.'/web/main.php';
 
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
-
-Route::middleware(['auth'])->group(function () {
-    Route::redirect('settings', 'settings/profile');
-
-    Volt::route('settings/profile', 'settings.profile')->name('profile.edit');
-    Volt::route('settings/password', 'settings.password')->name('password.edit');
-    Volt::route('settings/appearance', 'settings.appearance')->name('appearance.edit');
-});
-
-require __DIR__.'/auth.php';
+/**
+ * Route For Admin User
+ */
+require __DIR__.'/web/admin.php';
