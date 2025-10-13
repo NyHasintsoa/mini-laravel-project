@@ -17,6 +17,7 @@ class ProductFactory extends Factory
     public function definition(): array
     {
         $fileDirectory = 'storage/app/public/products';
+
         return [
             'title' => fake()->text(50),
             'description' => fake()->sentence(50),

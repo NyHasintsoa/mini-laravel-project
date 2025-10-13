@@ -1,17 +1,18 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Admin\Entreprise;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class StoreEntrepriseRequest extends FormRequest
+class UpdateEntrepriseRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +23,10 @@ class StoreEntrepriseRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => ['required', 'string', 'min:2', 'max:200', Rule::unique('entreprises')->ignore($this->route()->parameter('entreprise'))],
+            'email' => ['required', 'string', 'email', 'max:200'],
+            'activity' => ['string', 'max:200'],
+            'phone' => ['max:20'],
         ];
     }
 }

@@ -1,5 +1,6 @@
 /.phpunit.cache
 /node_modules
+/.php-cs-fixer.php
 
 /public/build
 /public/hot

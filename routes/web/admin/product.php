@@ -5,8 +5,9 @@ use App\Http\Controllers\Admin\Product\ReadController;
 use App\Http\Controllers\Admin\Product\ShowController;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('admin/products')->name('admin.products.')->group(function(): void {
+Route::prefix('admin/products')->name('admin.products.')->group(function (): void {
     Route::get('', ReadController::class)->name('read');
-    Route::get('/create', CreateController::class)->name('create');
-    Route::get('/{id}', ShowController::class)->name('show');
+    Route::get('/create', [CreateController::class, 'create'])->name('create');
+    Route::post('/create', [CreateController::class, 'store'])->name('store');
+    Route::get('/{product}', ShowController::class)->name('show');
 });

@@ -2,13 +2,24 @@
 
 namespace App\Livewire\Table;
 
-use Illuminate\Contracts\View\View;
-use Livewire\Component;
+use App\Livewire\Components\DataTableComponent;
+use App\Models\Product;
 
-class ProductsTable extends Component
+class ProductsTable extends DataTableComponent
 {
-    public function render(): View
-    {
-        return view('livewire.products-table');
-    }
+    protected $model = Product::class;
+    protected string $view = 'livewire.table.products-table';
+
+    public string $sortField = 'title';
+
+    protected string $searchableField = 'title';
+
+    protected string $initialSortField = 'title';
+
+    protected array $sortableFields = [
+        'title',
+        'price',
+        'product_type',
+        'created_at',
+    ];
 }

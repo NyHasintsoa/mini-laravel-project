@@ -16,7 +16,6 @@ Route::middleware('guest')->group(function (): void {
 
     Volt::route('reset-password/{token}', 'auth.reset-password')
         ->name('password.reset');
-
 });
 
 Route::middleware('auth')->group(function (): void {

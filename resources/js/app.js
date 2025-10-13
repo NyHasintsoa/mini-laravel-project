@@ -1,3 +1,3 @@
-import "preline/dist/preline.js";
+import 'preline/dist/index.js'
 
 window.HSStaticMethods.autoInit();

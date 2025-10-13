@@ -1,4 +1,9 @@
+@php
+    $classes = Flux::classes('shrink-0');
+@endphp
+
 <svg
+    {{ $attributes->class($classes) }}
     width="400"
     height="492"
     viewBox="0 0 400 492"

@@ -11,7 +11,9 @@
                 </p>
             </div>
 
-            <form>
+            <form method="post" action="{{ route('admin.products.store') }}" enctype="multipart/form-data">
+                @csrf
+
                 <!-- Grid -->
                 <div class="grid sm:grid-cols-12 gap-2 sm:gap-6">
                     <div class="sm:col-span-3">
@@ -25,12 +27,19 @@
                         <div class="flex items-center gap-5">
                             <div class="flex gap-x-2">
                                 <div>
-                                    <input class="hidden" type="file" name="path" id="input-file">
-                                    <label for="input-file"
+                                    <input class="hidden" type="file" name='file_path' id="input-file-path">
+                                    <label for="input-file-path"
                                         class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-2xs hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden focus:bg-gray-50 dark:bg-transparent dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800">
                                         <x-flux::icon.document class="shrink-0 size-4" width="24" height="24" />
                                         Upload fichier
                                     </label>
+                                    @error('file_path')
+                                        <p class="text-sm text-red-600 mt-2">
+                                            @foreach ($errors->get('file_path') as $message)
+                                                {{ $message }}
+                                            @endforeach
+                                        </p>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -38,72 +47,96 @@
                     <!-- End Col -->
 
                     <div class="sm:col-span-3">
-                        <label for="af-account-email"
+                        <label class="inline-block text-sm text-gray-800 mt-2.5 dark:text-neutral-200">
+                            Images
+                        </label>
+                    </div>
+                    <!-- End Col -->
+
+                    <div class="sm:col-span-9">
+                        <div class="flex items-center gap-5">
+                            <div class="flex gap-x-2">
+                                <div>
+                                    <input class="hidden" type="file" name='image_path' id="input-image-path">
+                                    <label for="input-image-path"
+                                        class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-2xs hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden focus:bg-gray-50 dark:bg-transparent dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800">
+                                        <x-flux::icon.document class="shrink-0 size-4" width="24" height="24" />
+                                        Upload fichier
+                                    </label>
+                                    @error('image_path')
+                                        <p class="text-sm text-red-600 mt-2">
+                                            @foreach ($errors->get('image_path') as $message)
+                                                {{ $message }}
+                                            @endforeach
+                                        </p>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Col -->
+
+                    <div class="sm:col-span-3">
+                        <label for="input-title"
                             class="inline-block text-sm text-gray-800 mt-2.5 dark:text-neutral-200">
                             Titre
                         </label>
                     </div>
                     <div class="sm:col-span-9">
-                        <input id="af-account-email" type="email"
-                            class="py-1.5 sm:py-2 px-3 pe-11 block w-full border-gray-200 shadow-2xs sm:text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 checked:border-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
+                        <x-input type='text' name='title' />
                     </div>
 
                     <div class="sm:col-span-3">
                         <label
-                            for="af-account-price"
+                            for="input-price"
                             class="inline-block text-sm text-gray-800 mt-2.5 dark:text-neutral-200">
                             Prix
                         </label>
                     </div>
                     <div class="sm:col-span-9">
-                        <label for="hs-leading-multiple-add-on" class="sr-only">Multiple add-on</label>
-                        <div class="flex rounded-lg">
-                        <div class="px-4 inline-flex items-center min-w-fit rounded-s-md border border-e-0 border-gray-200 bg-gray-50 dark:bg-neutral-700 dark:border-neutral-600">
-                            <span class="text-sm text-gray-500 dark:text-neutral-400">Ar</span>
+                        <div>
+                            <label for="input-price" class="sr-only">Ar</label>
+                            <div class="flex rounded-lg">
+                                <span class="size-11.5 shrink-0 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-s-md border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-hidden focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
+                                    Ar
+                                </span>
+                                <input type="number" id="input-price" name="price" class="py-2.5 sm:py-3 px-4 block w-full border border-gray-200 rounded-e-lg sm:text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
+                            </div>
                         </div>
-                        <input type="number" id="hs-leading-multiple-add-on" name="inline-add-on" class="py-2.5 sm:py-3 px-4 block w-full border-gray-200 rounded-lg rounded-s-none sm:text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
-                        </div>
+                        @error('price')
+                            <p class="text-sm text-red-600 mt-2">
+                                @foreach ($errors->get('price') as $message)
+                                    {{ $message }}
+                                @endforeach
+                            </p>
+                        @enderror
                     </div>
 
                     <div class="sm:col-span-3">
-                        <label for="af-account-gender-checkbox"
-                            class="inline-block text-sm text-gray-800 mt-2.5 dark:text-neutral-200">
-                            Gender
-                        </label>
+                        <span class="inline-block text-sm text-gray-800 mt-2.5 dark:text-neutral-200">
+                            Type Produit
+                        </span>
                     </div>
                     <!-- End Col -->
 
                     <div class="sm:col-span-9">
                         <div class="sm:flex">
-                            <label for="af-account-gender-checkbox"
-                                class="flex py-2 px-3 w-full border border-gray-200 shadow-2xs -mt-px -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg text-sm relative focus:z-10 focus:border-blue-500 focus:ring-blue-500 checked:border-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
-                                <input type="radio" name="af-account-gender-checkbox"
+                            @foreach (\App\Models\Enum\TypeProduct::values() as $typeProduct)
+                            <label for="input-radio-{{ $typeProduct }}" class="flex py-2 px-3 w-full border border-gray-200 shadow-2xs -mt-px -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg text-sm relative focus:z-10 focus:border-blue-500 focus:ring-blue-500 checked:border-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
+                                <input type="radio" name="product_type" value="{{ $typeProduct }}"
                                     class="shrink-0 mt-0.5 border-gray-300 rounded-full text-blue-600 focus:ring-blue-500 checked:border-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-500 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
-                                    id="af-account-gender-checkbox" checked>
-                                <span class="sm:text-sm text-gray-500 ms-3 dark:text-neutral-400">Male</span>
+                                    id="input-radio-{{ $typeProduct }}">
+                                <span class="sm:text-sm text-gray-500 ms-3 dark:text-neutral-400 lowercase">
+                                    {{ $typeProduct }}
+                                </span>
                             </label>
-
-                            <label for="af-account-gender-checkbox-female"
-                                class="flex py-2 px-3 w-full border border-gray-200 shadow-2xs -mt-px -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg text-sm relative focus:z-10 focus:border-blue-500 focus:ring-blue-500 checked:border-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
-                                <input type="radio" name="af-account-gender-checkbox"
-                                    class="shrink-0 mt-0.5 border-gray-300 rounded-full text-blue-600 focus:ring-blue-500 checked:border-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-500 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
-                                    id="af-account-gender-checkbox-female">
-                                <span class="sm:text-sm text-gray-500 ms-3 dark:text-neutral-400">Female</span>
-                            </label>
-
-                            <label for="af-account-gender-checkbox-other"
-                                class="flex py-2 px-3 w-full border border-gray-200 shadow-2xs -mt-px -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg text-sm relative focus:z-10 focus:border-blue-500 focus:ring-blue-500 checked:border-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
-                                <input type="radio" name="af-account-gender-checkbox"
-                                    class="shrink-0 mt-0.5 border-gray-300 rounded-full text-blue-600 focus:ring-blue-500 checked:border-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-500 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
-                                    id="af-account-gender-checkbox-other">
-                                <span class="sm:text-sm text-gray-500 ms-3 dark:text-neutral-400">Other</span>
-                            </label>
+                            @endforeach
                         </div>
                     </div>
                     <!-- End Col -->
 
                     <div class="sm:col-span-3">
-                        <label for="af-account-bio"
+                        <label for="input-description"
                             class="inline-block text-sm text-gray-800 mt-2.5 dark:text-neutral-200">
                             Description
                         </label>
@@ -111,22 +144,20 @@
                     <!-- End Col -->
 
                     <div class="sm:col-span-9">
-                        <textarea id="af-account-bio"
-                            class="py-1.5 sm:py-2 px-3 block w-full border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 checked:border-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                            rows="6" placeholder="Type your message..."></textarea>
+                        <x-input type='textarea' name='description' rows="6" placeholder="Quelque lignes à propos du description" />
                     </div>
                     <!-- End Col -->
                 </div>
                 <!-- End Grid -->
 
                 <div class="mt-5 flex justify-end gap-x-2">
-                    <button type="button"
+                    <button type="reset"
                         class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-2xs hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden focus:bg-gray-50 dark:bg-transparent dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800">
-                        Cancel
+                        Annuler
                     </button>
-                    <button type="button"
+                    <button type="submit"
                         class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-hidden focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
-                        Save changes
+                        Ajouter Produit
                     </button>
                 </div>
             </form>

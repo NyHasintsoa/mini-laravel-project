@@ -4,6 +4,7 @@
         @include('partials.head')
     </head>
     <body class="min-h-screen bg-white dark:bg-zinc-800">
+
         <flux:sidebar sticky stashable class="border-e border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
             <flux:sidebar.toggle class="lg:hidden" icon="x-mark" />
 
@@ -24,6 +25,9 @@
                     </flux:navlist.item>
                     <flux:navlist.item :href="route('admin.entreprises.read')" :current="request()->routeIs('admin.entreprises.read')" wire:navigate>
                         {{ __('Entreprises') }}
+                    </flux:navlist.item>
+                    <flux:navlist.item :href="route('admin.users.read')" :current="request()->routeIs('admin.users.read')" wire:navigate>
+                        {{ __('Users') }}
                     </flux:navlist.item>
                 </flux:navlist.group>
             </flux:navlist>
@@ -133,6 +137,8 @@
         </flux:header>
 
         {{ $slot }}
+
+        <x-ui.toast />
 
         @fluxScripts
     </body>

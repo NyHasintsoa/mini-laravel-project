@@ -22,17 +22,17 @@ class DatabaseSeeder extends Seeder
         Entreprise::factory(10)->create();
 
         Product::factory(5)->create([
-            'product_type' => TypeProduct::BOOK
+            'product_type' => TypeProduct::BOOK,
         ]);
         Product::factory(5)->create([
-            'product_type' => TypeProduct::COURSE
+            'product_type' => TypeProduct::COURSE,
         ]);
 
         User::factory()->create([
             'name' => 'Admin User',
             'email' => 'admin@domain.com',
             'password' => Hash::make('Admin@123'),
-            'role' => UserRole::ADMIN
+            'role' => UserRole::ADMIN,
         ]);
     }
 }

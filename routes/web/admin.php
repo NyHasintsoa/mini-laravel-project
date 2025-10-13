@@ -17,3 +17,4 @@ Route::view('admin/dashboard', 'dashboard')
 
 require __DIR__.'/admin/product.php';
 require __DIR__.'/admin/entreprise.php';
+require __DIR__.'/admin/user.php';

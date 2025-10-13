@@ -4,11 +4,13 @@ namespace App\Models;
 
 use App\Models\Enum\PaymentCurrency;
 use App\Models\Enum\PaymentMethod;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Payment extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = [
         'phone',
         'amount',
@@ -32,7 +34,7 @@ class Payment extends Model
         return [
             'payed_at' => 'immutable_datetime',
             'method' => PaymentMethod::class,
-            'currency' => PaymentCurrency::class
+            'currency' => PaymentCurrency::class,
         ];
     }
 }
