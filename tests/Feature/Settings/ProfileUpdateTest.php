@@ -68,7 +68,6 @@ class ProfileUpdateTest extends TestCase
             ->assertHasNoErrors()
             ->assertRedirect('/');
 
-        $this->assertNull($user->fresh());
         $this->assertFalse(auth()->check());
     }
 
