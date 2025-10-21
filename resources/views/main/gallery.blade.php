@@ -15,7 +15,7 @@ $images = [
 ];
 @endphp
 
-<x-layouts.main.base>
+<x-layouts.main.base-home>
     <!-- Masonry Cards -->
     <div class="max-w-6xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
         <!-- Grid -->
@@ -47,4 +47,4 @@ $images = [
         <!-- End Grid -->
     </div>
     <!-- End Masonry Cards -->
-</x-layouts.main.base>
+</x-layouts.main.base-home>

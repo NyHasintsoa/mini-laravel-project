@@ -10,6 +10,7 @@ class Entreprise extends Model
 {
     /** @use HasFactory<\Database\Factories\EntrepriseFactory> */
     use HasFactory;
+
     use SoftDeletes;
 
     protected $fillable = [

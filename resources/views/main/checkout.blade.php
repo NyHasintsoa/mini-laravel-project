@@ -1,4 +1,4 @@
-<x-layouts.main.base>
+<x-layouts.main.base-home>
     <div class="flex">
         <!-- Card Section -->
         <div class="max-w-2xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
@@ -130,4 +130,4 @@
         </div>
         <!-- End Card Section -->
     </div>
-</x-layouts.main.base>
+</x-layouts.main.base-home>

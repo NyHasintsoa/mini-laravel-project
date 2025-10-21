@@ -20,11 +20,14 @@
                 </flux:navlist.group>
 
                 <flux:navlist.group :heading="__('Pages')" class="grid">
-                    <flux:navlist.item :href="route('admin.products.read')" :current="request()->routeIs('admin.products.read')" wire:navigate>
-                        {{ __('Produits') }}
-                    </flux:navlist.item>
                     <flux:navlist.item :href="route('admin.entreprises.read')" :current="request()->routeIs('admin.entreprises.read')" wire:navigate>
                         {{ __('Entreprises') }}
+                    </flux:navlist.item>
+                    <flux:navlist.item :href="route('admin.books.read')" :current="request()->routeIs('admin.books.read')" wire:navigate>
+                        {{ __('Livres') }}
+                    </flux:navlist.item>
+                    <flux:navlist.item :href="route('admin.courses.read')" :current="request()->routeIs('admin.courses.read')" wire:navigate>
+                        {{ __('Cours') }}
                     </flux:navlist.item>
                     <flux:navlist.item :href="route('admin.users.read')" :current="request()->routeIs('admin.users.read')" wire:navigate>
                         {{ __('Users') }}

@@ -1,10 +1,12 @@
 <?php
 
+use App\Models\Enum\OrderStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      */
@@ -14,6 +16,7 @@ return new class extends Migration {
             $table->id();
 
             $table->double('total');
+            $table->enum('status', OrderStatus::values())->default(OrderStatus::READY);
 
             $table->foreignId('user_id')
                 ->constrained('users')

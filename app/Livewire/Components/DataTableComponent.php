@@ -22,7 +22,9 @@ abstract class DataTableComponent extends Component
 
     #[Locked]
     public string $sortField;
+
     protected string $initialSortField;
+
     protected string $searchableField;
 
     #[Locked]
@@ -43,7 +45,7 @@ abstract class DataTableComponent extends Component
 
     public function sortBy(string $sortField): void
     {
-        if (!in_array($sortField, $this->sortableFields)) {
+        if (! in_array($sortField, $this->sortableFields)) {
             return;
         }
         $this->resetPage();

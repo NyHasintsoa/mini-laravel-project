@@ -53,9 +53,8 @@ git clone https://github.com/NyHasintsoa/mini-laravel-project.git
 
 # Go into the project directory
 cd your-project-name
-
-# Init the project
-make init
+npm install
+composer install
 ```
 
 ### Running the App
@@ -84,6 +83,12 @@ After configuring the database :
 php artisan migrate
 php artisan db:seed # seeding database with fake data
 ```
+
+Authentication
+
+**user :** admin@domain.com  
+**password :** Admin@123
+
 
 ## 📂 Project Structure
 

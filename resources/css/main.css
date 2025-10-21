@@ -1,0 +1,5 @@
+@import './vendor/bootstrap/css/bootstrap.min.css';
+@import './vendor/bootstrap/css/bootstrap-4-navbar.css';
+@import './vendor/fontawesome/css/all.min.css';
+@import './custom/custom.css';
+@import './custom/custom-responsive.css';

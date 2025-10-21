@@ -8,6 +8,7 @@ use App\Models\User;
 class UsersTable extends DataTableComponent
 {
     protected $model = User::class;
+
     protected string $view = 'livewire.table.users-table';
 
     public string $sortField = 'name';

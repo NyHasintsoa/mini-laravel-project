@@ -8,6 +8,7 @@ use App\Models\Entreprise;
 class EntreprisesTable extends DataTableComponent
 {
     protected $model = Entreprise::class;
+
     protected string $view = 'livewire.table.entreprises-table';
 
     public string $sortField = 'name';

@@ -5,7 +5,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      */
@@ -17,15 +18,17 @@ return new class extends Migration {
             $table->string('title', 200)->nullable(false);
             $table->text('description')->nullable();
             $table->double('price')->default(0);
-            $table->string('file_path')->nullable(false);
             $table->string('image_path')->nullable();
+
             $table->enum('product_type', TypeProduct::values())->default(TypeProduct::BOOK);
+            $table->bigInteger('product_id', false, true)
+                ->nullable(false)
+                ->comment('Book or Course (Id)');
 
             $table->foreignId('entreprise_id')
                 ->constrained('entreprises')
                 ->onDelete('cascade');
 
-            $table->softDeletes();
             $table->timestamps();
         });
     }

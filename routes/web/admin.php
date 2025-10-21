@@ -11,10 +11,11 @@ Route::middleware(['auth'])->prefix('admin')->group(function (): void {
     Volt::route('settings/appearance', 'settings.appearance')->name('appearance.edit');
 });
 
-Route::view('admin/dashboard', 'dashboard')
+Route::view('admin', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('admin.dashboard');
 
-require __DIR__.'/admin/product.php';
 require __DIR__.'/admin/entreprise.php';
 require __DIR__.'/admin/user.php';
+require __DIR__.'/admin/book.php';
+require __DIR__.'/admin/course.php';

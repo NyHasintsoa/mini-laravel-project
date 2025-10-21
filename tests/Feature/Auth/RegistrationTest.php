@@ -10,14 +10,14 @@ class RegistrationTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testRegistrationScreenCanBeRendered(): void
+    public function test_registration_screen_can_be_rendered(): void
     {
         $response = $this->get(route('register'));
 
         $response->assertStatus(200);
     }
 
-    public function testNewUsersCanRegister(): void
+    public function test_new_users_can_register(): void
     {
         $response = Volt::test('auth.register')
             ->set('name', 'Test User')
